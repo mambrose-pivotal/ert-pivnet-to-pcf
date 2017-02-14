@@ -1,0 +1,23 @@
+resource_types:
+- name: pivnet
+  type: docker-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
+
+resources:
+    - name: pivnet-elastic-runtime
+      type: pivnet
+      source:
+        api_token: ucz3X5yYf4KaGA9xdAao
+        product_slug: elastic-runtime
+        product_version: 1.9.6
+        sort_by: semver
+
+jobs:
+  - name: get-ERT
+    plan:
+      - get: pivnet-elastic-runtime
+        params:
+        globs:
+          - "*pivotal"
